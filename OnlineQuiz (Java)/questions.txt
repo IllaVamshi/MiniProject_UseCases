@@ -1,0 +1,20 @@
+What is the brain of the computer?|CPU|RAM|Hard Disk|Monitor|1
+Which language is used for web development?|Python|HTML|C|Java|2
+What does OOP stand for?|Only One Program|Over Object Processing|Object Oriented Programming|None|3
+Which data structure uses FIFO?|Stack|Tree|Queue|Graph|3
+Which keyword is used to inherit a class in Java?|implements|super|inherits|extends|4
+Which of the following is not an operating system?|Windows|Linux|Oracle|macOS|3
+Which symbol is used for comments in Java?|##|<!-- -->|//|**|3
+What is the default value of int in Java?|1|null|undefined|0|4
+Which data structure uses LIFO?|Queue|Array|Stack|LinkedList|3
+Which company developed Java?|Microsoft|Google|Apple|Sun Microsystems|4
+Which method is the entry point of a Java program?|start()|run()|init()|main()|4
+Which of these is not a programming language?|Python|Java|HTML|C++|3
+Which part of computer stores data permanently?|RAM|Cache|Register|Hard Disk|4
+Which protocol is used for web browsing?|FTP|SMTP|TCP|HTTP|4
+Which of these is a loop structure in Java?|if|switch|case|for|4
+What is the extension of Java bytecode files?|.java|.txt|.exe|.class|4
+Which keyword is used to define a constant in Java?|const|static|define|final|4
+Which data structure is used in recursion?|Queue|Tree|Graph|Stack|4
+Which is fastest memory in computer?|RAM|ROM|Hard Disk|Cache|4
+Which of the following is a database?|Java|Python|HTML|MySQL|4
