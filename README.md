@@ -80,7 +80,7 @@ pip install matplotlib
 python expense\_tracker.py
 
 ▶️ **Note**  
-`expenses.json` will be created automatically after first entry  
+`expenses.csv` will be created automatically after first entry  
 Add data before viewing reports
 
 * * *
