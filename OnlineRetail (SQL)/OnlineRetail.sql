@@ -59,12 +59,14 @@ INSERT INTO Order_Items VALUES
 (1004, 101, 1),
 (1005, 105, 3);
 
+--- Top-Selling Products ---
 SELECT p.product_id, p.name, SUM(oi.quantity) AS total_sold
 FROM Order_Items oi
 JOIN Products p ON oi.product_id = p.product_id
 GROUP BY p.product_id, p.name
 ORDER BY total_sold DESC;
 
+--- Most Valuable Customers ---
 SELECT c.customer_id, c.name,
        SUM(p.price * oi.quantity) AS total_spent
 FROM Customers c
@@ -74,6 +76,7 @@ JOIN Products p ON oi.product_id = p.product_id
 GROUP BY c.customer_id, c.name
 ORDER BY total_spent DESC;
 
+--- Monthly revenue Calculation ---
 SELECT DATE_FORMAT(o.order_date, '%Y-%m') AS month,
        SUM(p.price * oi.quantity) AS revenue
 FROM Orders o
@@ -82,6 +85,7 @@ JOIN Products p ON oi.product_id = p.product_id
 GROUP BY month
 ORDER BY month;
 
+--- Category-Wise Sales Analysis ---
 SELECT p.category,
        SUM(oi.quantity) AS total_items_sold,
        SUM(p.price * oi.quantity) AS total_revenue
@@ -90,6 +94,7 @@ JOIN Products p ON oi.product_id = p.product_id
 GROUP BY p.category
 ORDER BY total_revenue DESC;
 
+--- Inactive Customers ---
 SELECT c.customer_id, c.name
 FROM Customers c
 WHERE c.customer_id NOT IN (

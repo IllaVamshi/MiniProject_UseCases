@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-// -------- QUESTION CLASS --------
 class Question {
     String question;
     String[] options;
@@ -26,7 +25,6 @@ class Question {
     }
 }
 
-// -------- MAIN SYSTEM --------
 public class QuizSystem {
 
     static Scanner sc = new Scanner(System.in);
@@ -82,7 +80,6 @@ public class QuizSystem {
         return list;
     }
 
-    // -------- ADMIN SECTION --------
     static void addQuestions() {
         System.out.print("Enter number of questions: ");
         int n = sc.nextInt();
@@ -108,7 +105,6 @@ public class QuizSystem {
         System.out.println("Questions saved successfully!");
     }
 
-    // -------- QUIZ SECTION --------
     static void startQuiz() {
         List<Question> list = loadQuestions();
 
@@ -150,7 +146,6 @@ public class QuizSystem {
         showResult(score, list.size());
     }
 
-    // -------- RESULT --------
     static void showResult(int score, int total) {
         System.out.println("\n===== RESULT =====");
         System.out.println("Score: " + score + "/" + total);
@@ -166,7 +161,6 @@ public class QuizSystem {
             System.out.println("Performance: Needs Improvement");
     }
 
-    // -------- MAIN MENU --------
     public static void main(String[] args) {
 
         while (true) {

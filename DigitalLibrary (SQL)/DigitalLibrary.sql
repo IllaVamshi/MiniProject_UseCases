@@ -48,7 +48,7 @@ INSERT INTO IssuedBooks (StudentID, BookID, IssueDate, ReturnDate) VALUES
 (4, 5, '2022-01-01', '2022-01-10'),
 (5, 1, '2021-02-15', '2021-02-25');
 
-
+--  Overdue Books ---
 SELECT 
     S.StudentID,
     S.Name,
@@ -62,7 +62,7 @@ JOIN Books B ON I.BookID = B.BookID
 WHERE I.ReturnDate IS NULL
 AND DATEDIFF(CURDATE(), I.IssueDate) > 14;
 
-
+--- Most Borrowed Category ---
 SELECT 
     B.Category,
     COUNT(*) AS Total_Borrows
@@ -80,7 +80,7 @@ WHERE StudentID NOT IN (
     WHERE IssueDate >= DATE_SUB(CURDATE(), INTERVAL 3 YEAR)
 );
 
-
+--- Inactive Students ---
 SET SQL_SAFE_UPDATES = 0;
 
 UPDATE Students

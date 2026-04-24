@@ -1,185 +1,177 @@
-import json
+import csv
 import os
-from datetime import datetime
 import matplotlib.pyplot as plt
+from datetime import datetime
 
-FILE = "expenses.json"
+FILE_NAME = "expenses.csv"
 
-def load_data():
-    if os.path.exists(FILE):
-        try:
-            with open(FILE, "r") as f:
-                return json.load(f)
-        except:
-            return []
-    return []
-
-def save_data(data):
-    with open(FILE, "w") as f:
-        json.dump(data, f, indent=4)
-
+# Add expense
 def add_expense():
-    data = load_data()
-
-    # date input
-    while True:
-        date = input("Enter date (YYYY-MM-DD) or press enter: ")
-        if date == "":
-            date = datetime.now().strftime("%Y-%m-%d")
-            break
-        elif len(date) == 10 and date[4] == "-" and date[7] == "-":
-            break
-        else:
-            print("Invalid date format! Try again.")
-
-    # category input
-    while True:
-        category = input("Enter category: ").strip()
-        if category != "":
-            break
-        else:
-            print("Category cannot be empty!")
-
-    # amount input
-    while True:
-        try:
-            amount = float(input("Enter amount: "))
-            if amount > 0:
-                break
-            else:
-                print("Amount must be greater than 0.")
-        except ValueError:
-            print("Please enter a valid number.")
-
-    desc = input("Enter description: ")
-
-    expense = {
-        "date": date,
-        "category": category,
-        "amount": amount,
-        "description": desc
-    }
-
-    data.append(expense)
-    save_data(data)
-
-    print("Expense added successfully!")
-
-def view_expenses():
-    data = load_data()
-
-    if not data:
-        print("No data found.")
+    date = input("Enter date (DD-MM-YYYY): ")
+    try:
+        datetime.strptime(date, "%d-%m-%Y")
+    except ValueError:
+        print("Invalid date format! Please use DD-MM-YYYY.\n")
         return
 
-    print("\n" + "-" * 40)
-    print("        EXPENSE LIST        ")
-    print("-" * 40)
+    category = input("Enter category : ").strip()
+    if category == "":
+        print("Category cannot be empty!\n")
+        return
 
-    for e in data:
-        print(f"{e['date']} | {e['category']} | ₹{e['amount']} | {e['description']}")
+    try:
+        amount = float(input("Enter amount: "))
+        if amount <= 0:
+            print("Amount must be greater than 0.\n")
+            return
+    except ValueError:
+        print("Invalid amount!\n")
+        return
 
-def monthly_summary():
-    data = load_data()
+    description = input("Enter description: ")
 
-    while True:
-        month = input("Enter month (YYYY-MM): ")
-        if len(month) == 7 and month[4] == "-":
-            break
-        else:
-            print("Invalid format! Try again.")
+    file_exists = os.path.exists(FILE_NAME)
 
+    with open(FILE_NAME, mode='a', newline='') as file:
+        writer = csv.writer(file)
+
+        if not file_exists:
+            writer.writerow(["date", "category", "amount", "description"])
+
+        writer.writerow([date, category, amount, description])
+
+    print("Expense added successfully!\n")
+
+
+# View all expenses
+def view_expenses():
+    if not os.path.exists(FILE_NAME):
+        print("No data found.\n")
+        return
+
+    with open(FILE_NAME, mode='r') as file:
+        reader = csv.reader(file)
+        next(reader, None)
+
+        print("\n--- Expense List ---")
+        for row in reader:
+            print(row)
+
+
+# Monthly Analysis
+def monthly_analysis():
+    if not os.path.exists(FILE_NAME):
+        print("No data available.\n")
+        return
+
+    month = input("Enter month (MM-YYYY): ")
     total = 0
 
-    for e in data:
-        if e["date"].startswith(month):
-            total += e["amount"]
+    with open(FILE_NAME, mode='r') as file:
+        reader = csv.DictReader(file)
 
-    if total == 0:
-        print("No data for this month.")
-    else:
-        print(f"Total spending in {month}: ₹{total}")
+        for row in reader:
+            try:
+                row_date = datetime.strptime(row['date'], "%d-%m-%Y")
+                if row_date.strftime("%m-%Y") == month:
+                    total += float(row['amount'])
+            except:
+                continue
 
+    print("\n--- Monthly Analysis ---")
+    print(f"Month: {month}")
+    print(f"Total Expense: ₹{total}\n")
+
+
+# Category Analysis
 def category_analysis():
-    data = load_data()
+    if not os.path.exists(FILE_NAME):
+        print("No data available.\n")
+        return {}
 
-    if not data:
-        print("No data available.")
-        return
+    categories = {}
 
-    category_total = {}
+    with open(FILE_NAME, mode='r') as file:
+        reader = csv.DictReader(file)
 
-    for e in data:
-        cat = e["category"]
-        if cat in category_total:
-            category_total[cat] += e["amount"]
-        else:
-            category_total[cat] = e["amount"]
+        for row in reader:
+            try:
+                cat = row['category']
+                amt = float(row['amount'])
 
-    print("\nCategory-wise spending:")
-    for c in category_total:
-        print(f"{c}: ₹{category_total[c]}")
+                if cat in categories:
+                    categories[cat] += amt
+                else:
+                    categories[cat] = amt
+            except:
+                continue
 
-    # highest category
-    max_cat = max(category_total, key=category_total.get)
-    print(f"\nHighest spending category: {max_cat}")
+    print("\n--- Category Analysis ---")
+    for cat, amt in categories.items():
+        print(f"{cat}: ₹{amt}")
 
-def show_chart():
-    data = load_data()
+    return categories
 
-    if not data:
-        print("No data to show.")
-        return
 
-    category_total = {}
+# Highest spending category
+def highest_category():
+    categories = category_analysis()
 
-    for e in data:
-        cat = e["category"]
-        if cat in category_total:
-            category_total[cat] += e["amount"]
-        else:
-            category_total[cat] = e["amount"]
+    if categories:
+        max_cat = max(categories, key=categories.get)
+        print("\n--- Highest Spending Category ---")
+        print(f"Category: {max_cat}\n")
+    else:
+        print("No data available\n")
 
-    labels = []
-    values = []
 
-    for c in category_total:
-        labels.append(c)
-        values.append(category_total[c])
+# Pie chart
+def show_pie_chart():
+    categories = category_analysis()
 
-    plt.pie(values, labels=labels, autopct="%1.1f%%")
-    plt.title("Expense Distribution")
-    plt.show()
+    if categories:
+        labels = list(categories.keys())
+        values = list(categories.values())
 
+        plt.pie(values, labels=labels, autopct='%1.1f%%')
+        plt.title("Expense Distribution")
+        plt.show()
+    else:
+        print("No data to display\n")
+
+
+# Main menu
 def main():
-    print("Welcome to Smart Expense Tracker")
-    print("-" * 40)
-
     while True:
-        print("\n1. Add Expense")
+        print("\n--- Smart Expense Tracker ---")
+        print("1. Add Expense")
         print("2. View Expenses")
-        print("3. Monthly Summary")
+        print("3. Monthly Analysis")
         print("4. Category Analysis")
-        print("5. Show Pie Chart")
-        print("6. Exit")
+        print("5. Highest Spending Category")
+        print("6. Show Pie Chart")
+        print("7. Exit")
 
-        choice = input("Enter choice: ")
+        choice = input("Enter your choice: ")
 
-        if choice == "1":
+        if choice == '1':
             add_expense()
-        elif choice == "2":
+        elif choice == '2':
             view_expenses()
-        elif choice == "3":
-            monthly_summary()
-        elif choice == "4":
+        elif choice == '3':
+            monthly_analysis()
+        elif choice == '4':
             category_analysis()
-        elif choice == "5":
-            show_chart()
-        elif choice == "6":
-            print("Exiting...")
+        elif choice == '5':
+            highest_category()
+        elif choice == '6':
+            show_pie_chart()
+        elif choice == '7':
+            print("Exiting program...")
             break
         else:
-            print("Invalid choice! Try again.")
+            print("Invalid choice!\n")
+
 
 if __name__ == "__main__":
     main()
