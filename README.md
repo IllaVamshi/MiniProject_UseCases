@@ -60,7 +60,7 @@ A Python application that helps users record, manage, and analyze daily expenses
 
  **Features**  
 Add daily expenses (date, category, amount, description)  
-Store data using CSV
+Store data using CSV  
 View all expenses  
 Monthly summary  
 Category-wise analysis  
@@ -69,7 +69,7 @@ Pie chart visualization
 
  **Technologies Used**  
 Python  
-CSV 
+CSV   
 Matplotlib
 
  **Installation**  
