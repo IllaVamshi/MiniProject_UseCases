@@ -1,15 +1,14 @@
-This repository contains multiple practical projects demonstrating skills in **Java, Python, and SQL**, focusing on problem-solving, data handling, and real-world applications.
 
 * * *
 
-# 🧩 Projects Overview
+#  Projects Overview
 
 ## 1️⃣ Online Quiz & Assessment System (Java)
 
-📌 **Description**  
+ **Description**  
 A console-based quiz system where users can attempt multiple-choice quizzes and admins can securely add new questions.
 
-⚙️ **Features**  
+ **Features**  
 Menu-driven interface  
 Admin authentication (password protected)  
 Add multiple-choice questions  
@@ -18,12 +17,12 @@ Automatic score calculation
 Performance analysis (Excellent / Good / Needs Improvement)  
 File handling using `.txt` files
 
-🛠️ **Technologies Used**  
+ **Technologies Used**  
 Java  
 File Handling (BufferedReader, FileWriter)  
 ArrayList
 
-▶️ **How to Run**  
+ **How to Run**  
 javac QuizSystem.java  
 java QuizSystem
 
@@ -31,10 +30,10 @@ java QuizSystem
 
 ## 2️⃣ FinSafe Transaction Validator (Java)
 
-📌 **Description**  
+ **Description**  
 A console-based digital wallet application that validates user transactions and prevents overdraft using exception handling.
 
-⚙️ **Features**  
+ **Features**  
 Menu-driven interface  
 Deposit money  
 Withdraw with balance validation  
@@ -43,12 +42,12 @@ Stores last 5 transactions
 Mini statement for history  
 Input validation and error handling
 
-🛠️ **Technologies Used**  
+ **Technologies Used**  
 Java  
 Core Java (OOP, Exception Handling)  
 ArrayList
 
-▶️ **How to Run**  
+ **How to Run**  
 javac FinSafeApp.java  
 java FinSafeApp
 
@@ -56,10 +55,10 @@ java FinSafeApp
 
 ## 3️⃣ Smart Expense Tracker (Python)
 
-📌 **Description**  
+ **Description**  
 A Python application that helps users record, manage, and analyze daily expenses with insights and visualization.
 
-⚙️ **Features**  
+ **Features**  
 Add daily expenses (date, category, amount, description)  
 Store data using JSON  
 View all expenses  
@@ -68,18 +67,18 @@ Category-wise analysis
 Highest spending detection  
 Pie chart visualization
 
-🛠️ **Technologies Used**  
+ **Technologies Used**  
 Python  
 JSON  
 Matplotlib
 
-▶️ **Installation**  
+ **Installation**  
 pip install matplotlib
 
-▶️ **How to Run**  
+ **How to Run**  
 python expense\_tracker.py
 
-▶️ **Note**  
+ **Note**  
 `expenses.csv` will be created automatically after first entry  
 Add data before viewing reports
 
@@ -87,10 +86,10 @@ Add data before viewing reports
 
 ## 4️⃣ FareCalc – Travel Optimizer (Python)
 
-📌 **Description**  
+ **Description**  
 A command-line fare calculator for a ride-sharing service that computes cost based on distance, vehicle type, and surge pricing.
 
-⚙️ **Features**  
+ **Features**  
 Distance-based fare calculation  
 Multiple vehicle types (Economy, Premium, SUV)  
 Surge pricing (5 PM – 8 PM)  
@@ -98,43 +97,43 @@ Input validation
 Error handling  
 Formatted receipt output
 
-🛠️ **Technologies Used**  
+ **Technologies Used**  
 Python  
 Functions, Loops, Dictionaries  
 Exception Handling
 
-▶️ **How to Run**  
+ **How to Run**  
 python farecalc.py
 
 * * *
 
 ## 5️⃣ Digital Library Audit System (SQL)
 
-📌 **Description**  
+ **Description**  
 A relational database system designed to manage book records and analyze borrowing activity.
 
-🧱 **Database Tables**  
+ **Database Tables**  
 Students  
 Books  
 IssuedBooks
 
-⚙️ **Features**  
+ **Features**  
 Structured relational database  
 Foreign key relationships  
 Book issue and return tracking  
 Overdue detection  
 Student activity monitoring
 
-📊 **Key Queries**  
+ **Key Queries**  
 Overdue books  
 Penalty reports  
 Popular categories  
 Inactive students
 
-🛠️ **Technologies Used**  
+ **Technologies Used**  
 SQL (MySQL)
 
-▶️ **How to Run**  
+ **How to Run**  
 Open MySQL Workbench / CLI  
 Run the SQL script:  
 digital\_library.sql
@@ -143,32 +142,32 @@ digital\_library.sql
 
 ## 6️⃣ Online Retail Sales Analysis Database (SQL)
 
-📌 **Description**  
+ **Description**  
 A relational database system for managing retail store data and performing sales analytics.
 
-🧱 **Database Tables**  
+ **Database Tables**  
 Customers  
 Products  
 Orders  
 Order\_Items
 
-⚙️ **Features**  
+ **Features**  
 Structured database design  
 Sales and revenue tracking  
 Customer analysis  
 Real-world data simulation
 
-📊 **Key Queries**  
+ **Key Queries**  
 Top-selling products  
 Most valuable customers  
 Monthly revenue  
 Category-wise sales  
 Inactive customers
 
-🛠️ **Technologies Used**  
+ **Technologies Used**  
 SQL (MySQL)
 
-▶️ **How to Run**  
+ **How to Run**  
 Open MySQL Workbench / CLI  
 Run the SQL script:  
 retail\_sales\_project.sql
